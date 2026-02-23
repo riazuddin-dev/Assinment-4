@@ -37,8 +37,33 @@ const thardBtnFilterBtn=document.getElementById("thardBtn")
 
 
 function togglestyle(id){
+
+fastFilterBtn.classList.remove("btn-info")
+
+secountFilterBtn.classList.remove("btn-info")
+
+thardBtnFilterBtn.classList.remove("btn-info")
+fastFilterBtn.classList.add("btn-outline")
+
+secountFilterBtn.classList.add("btn-outline")
+
+thardBtnFilterBtn.classList.add("btn-outline")
+
+
+
+
+
    
-    
+    const slected = document.getElementById(id)
+   
+slected.classList.add("btn-info")
+
+
+
+
+
+
+
 
 
 }
