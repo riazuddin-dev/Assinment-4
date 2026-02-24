@@ -109,3 +109,22 @@ allCardSection.addEventListener("click", function (event) {
   }
 
 });
+
+
+
+// add status update
+
+const statusElement = card.querySelector(".not-AppliedBtn");
+
+if (job.status === "interview") {
+  statusElement.innerText = "Interview";
+  statusElement.className = "btn btn-success btn-sm w-[113px] not-AppliedBtn";
+}
+else if (job.status === "rejected") {
+  statusElement.innerText = "Rejected";
+  statusElement.className = "btn btn-error btn-sm w-[113px] not-AppliedBtn";
+}
+else {
+  statusElement.innerText = "Not Applied";
+  statusElement.className = "btn btn-info btn-sm w-[113px] not-AppliedBtn";
+}
