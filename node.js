@@ -1,7 +1,7 @@
-//  Job Application Tracker 
+    //  Job Application Tracker 
 
 
-//  job section 
+    //  job section 
 
 let jobs = [
   { id: "1", status: "all" },
@@ -20,6 +20,7 @@ let currentTab = "all";
 
 //  DOM ELEMENTS
  
+
 let total = document.getElementById("total");
 let interviewCount = document.getElementById("Interview");
 let rejectedCount = document.getElementById("Rejected");
@@ -27,17 +28,13 @@ let rejectedCount = document.getElementById("Rejected");
 let allCardSection = document.getElementById("all-cards");
 let emptyState = document.getElementById("empty-state");
 
-//  NEW ADD (1/8 COUNTER)
-let jobCount = document.getElementById("job-count");
-let totalCount = document.getElementById("total-count");
-
 const allBtn = document.getElementById("fastBtn");
 const interviewBtn = document.getElementById("secountBtn");
 const rejectedBtn = document.getElementById("thardBtn");
 
 
-
 //  COUNT FUNCTION
+
 
 function calculateCount() {
   total.innerText = jobs.length;
@@ -46,8 +43,8 @@ function calculateCount() {
 }
 
 
-
 //  TAB STYLE FUNCTION
+
 
 function toggleStyle(activeId) {
 
@@ -66,6 +63,7 @@ function toggleStyle(activeId) {
 
 
 //  RENDER FUNCTION
+
 
 function renderCards() {
 
@@ -122,13 +120,7 @@ function renderCards() {
 
   });
 
-  // 🔥 NEW ADD (1/8 SYSTEM HERE)
-  if (jobCount && totalCount) {
-    jobCount.innerText = visibleCount;
-    totalCount.innerText = jobs.length;
-  }
-
-  // EMPTY STATE
+  //  EMPTY STATE
   if (visibleCount === 0) {
     emptyState.classList.remove("hidden");
   } else {
@@ -141,6 +133,7 @@ function renderCards() {
 
 
 //  TAB EVENTS
+
 
 allBtn.addEventListener("click", function () {
   currentTab = "all";
@@ -161,8 +154,8 @@ rejectedBtn.addEventListener("click", function () {
 });
 
 
-
 // EVENT DELEGATION
+
 
 allCardSection.addEventListener("click", function (event) {
 
@@ -177,7 +170,7 @@ allCardSection.addEventListener("click", function (event) {
 
   if (!job) return;
 
-  // Interview Toggle
+  //  Interview Toggle
   if (button.classList.contains("interview-btn")) {
     job.status = job.status === "interview" ? "all" : "interview";
     renderCards();
@@ -189,14 +182,15 @@ allCardSection.addEventListener("click", function (event) {
     renderCards();
   }
 
-  // Delete
-  if (button.classList.contains("cursor-pointer")) {
+  //  Delete
+  if (button.classList.contains("delete-btn")) {
     card.remove();
     jobs = jobs.filter(j => j.id !== id);
     renderCards();
   }
 
 });
+
 
 
 
