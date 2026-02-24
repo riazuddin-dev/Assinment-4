@@ -1,69 +1,59 @@
 
-let InterviewList=[];
-
-let RejectedList=[];
+//  Job Application Tracker
 
 
+//  Job Data
 
+let jobs = [
+  { id: "1", status: "all" },
+  { id: "2", status: "all" },
+  { id: "3", status: "all" },
+  { id: "4", status: "all" },
+  { id: "5", status: "all" },
+  { id: "6", status: "all" },
+  { id: "7", status: "all" },
+  { id: "8", status: "all" }
+];
 
+let currentTab = "all";
 
 let total = document.getElementById("total");
+let interviewCount = document.getElementById("Interview");
+let rejectedCount = document.getElementById("Rejected");
 
-let Interview = document.getElementById("Interview");
-
-let Rejected = document.getElementById("Rejected");
-
-const allCardSection = document.getElementById("all-cards");
+let allCardSection = document.getElementById("all-cards");
 
 
+// conunt funtion 
 
-
-function calculetCount() {
-  total.innerText = allCardSection.children.length;
-
-  Interview.innerText=InterviewList.length;
-
-  Rejected.innerText=InterviewList.length;
+function calculateCount() {
+  total.innerText = jobs.length;
+  interviewCount.innerText = jobs.filter(j => j.status === "interview").length;
+  rejectedCount.innerText = jobs.filter(j => j.status === "rejected").length;
 }
-calculetCount();
+
+calculateCount();
 
 
-
-// trogoling section ....
-
-const fastFilterBtn=document.getElementById("fastBtn");
-const secountFilterBtn=document.getElementById("secountBtn")
-const thardBtnFilterBtn=document.getElementById("thardBtn")
+//  toggol system
 
 
-function togglestyle(id){
+const allBtn = document.getElementById("fastBtn");
+const interviewBtn = document.getElementById("secountBtn");
+const rejectedBtn = document.getElementById("thardBtn");
 
-fastFilterBtn.classList.remove("btn-info")
+function toggleStyle(activeId) {
 
-secountFilterBtn.classList.remove("btn-info")
+  const buttons = [allBtn, interviewBtn, rejectedBtn];
 
-thardBtnFilterBtn.classList.remove("btn-info")
-fastFilterBtn.classList.add("btn-outline")
+  buttons.forEach(btn => {
+    btn.classList.remove("btn-info");
+    btn.classList.add("btn-outline");
+  });
 
-secountFilterBtn.classList.add("btn-outline")
-
-thardBtnFilterBtn.classList.add("btn-outline")
-
-
-
-
-
-   
-    const slected = document.getElementById(id)
-   
-slected.classList.add("btn-info")
-
-
-
-
-
-
-
-
+  const selected = document.getElementById(activeId);
+  selected.classList.remove("btn-outline");
+  selected.classList.add("btn-info");
 
 }
+
