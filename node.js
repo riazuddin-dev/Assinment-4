@@ -57,3 +57,31 @@ function toggleStyle(activeId) {
 
 }
 
+// render funtion 
+function renderCards() {
+
+  const cards = document.querySelectorAll(".job-card");
+
+  cards.forEach(card => {
+
+    const id = card.dataset.id;
+    const job = jobs.find(j => j.id === id);
+
+    if (currentTab === "all") {
+      card.style.display = "block";
+    }
+
+    else if (currentTab === "interview") {
+      card.style.display = job.status === "interview" ? "block" : "none";
+    }
+
+    else if (currentTab === "rejected") {
+      card.style.display = job.status === "rejected" ? "block" : "none";
+    }
+
+  });
+
+  calculateCount();
+}
+
+renderCards();
