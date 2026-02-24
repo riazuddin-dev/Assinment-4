@@ -1,8 +1,7 @@
+    //  Job Application Tracker 
 
-//  Job Application Tracker
 
-
-//  Job Data
+    //  job section 
 
 let jobs = [
   { id: "1", status: "all" },
@@ -17,14 +16,25 @@ let jobs = [
 
 let currentTab = "all";
 
+
+
+//  DOM ELEMENTS
+ 
+
 let total = document.getElementById("total");
 let interviewCount = document.getElementById("Interview");
 let rejectedCount = document.getElementById("Rejected");
 
 let allCardSection = document.getElementById("all-cards");
+let emptyState = document.getElementById("empty-state");
+
+const allBtn = document.getElementById("fastBtn");
+const interviewBtn = document.getElementById("secountBtn");
+const rejectedBtn = document.getElementById("thardBtn");
 
 
-// conunt funtion 
+//  COUNT FUNCTION
+
 
 function calculateCount() {
   total.innerText = jobs.length;
@@ -32,15 +42,9 @@ function calculateCount() {
   rejectedCount.innerText = jobs.filter(j => j.status === "rejected").length;
 }
 
-calculateCount();
 
+//  TAB STYLE FUNCTION
 
-//  toggol system
-
-
-const allBtn = document.getElementById("fastBtn");
-const interviewBtn = document.getElementById("secountBtn");
-const rejectedBtn = document.getElementById("thardBtn");
 
 function toggleStyle(activeId) {
 
@@ -54,39 +58,105 @@ function toggleStyle(activeId) {
   const selected = document.getElementById(activeId);
   selected.classList.remove("btn-outline");
   selected.classList.add("btn-info");
-
 }
 
-// render funtion 
+
+
+//  RENDER FUNCTION
+
+
 function renderCards() {
 
   const cards = document.querySelectorAll(".job-card");
+  let visibleCount = 0;
 
   cards.forEach(card => {
 
     const id = card.dataset.id;
     const job = jobs.find(j => j.id === id);
+    const statusElement = card.querySelector(".not-AppliedBtn");
 
+    if (!job) return;
+
+    // STATUS UPDATE
+    if (job.status === "interview") {
+      statusElement.innerText = "Interview";
+      statusElement.className = "btn btn-success btn-sm w-[113px] not-AppliedBtn";
+    }
+
+    else if (job.status === "rejected") {
+      statusElement.innerText = "Rejected";
+      statusElement.className = "btn btn-error btn-sm w-[113px] not-AppliedBtn";
+    }
+
+    else {
+      statusElement.innerText = "Not Applied";
+      statusElement.className = "btn btn-info btn-sm w-[113px] not-AppliedBtn";
+    }
+
+    // FILTER SYSTEM
     if (currentTab === "all") {
       card.style.display = "block";
+      visibleCount++;
     }
 
     else if (currentTab === "interview") {
-      card.style.display = job.status === "interview" ? "block" : "none";
+      if (job.status === "interview") {
+        card.style.display = "block";
+        visibleCount++;
+      } else {
+        card.style.display = "none";
+      }
     }
 
     else if (currentTab === "rejected") {
-      card.style.display = job.status === "rejected" ? "block" : "none";
+      if (job.status === "rejected") {
+        card.style.display = "block";
+        visibleCount++;
+      } else {
+        card.style.display = "none";
+      }
     }
 
   });
 
+  //  EMPTY STATE
+  if (visibleCount === 0) {
+    emptyState.classList.remove("hidden");
+  } else {
+    emptyState.classList.add("hidden");
+  }
+
   calculateCount();
 }
 
-renderCards();
 
-// Add Interview
+
+//  TAB EVENTS
+
+
+allBtn.addEventListener("click", function () {
+  currentTab = "all";
+  toggleStyle("fastBtn");
+  renderCards();
+});
+
+interviewBtn.addEventListener("click", function () {
+  currentTab = "interview";
+  toggleStyle("secountBtn");
+  renderCards();
+});
+
+rejectedBtn.addEventListener("click", function () {
+  currentTab = "rejected";
+  toggleStyle("thardBtn");
+  renderCards();
+});
+
+
+// EVENT DELEGATION
+
+
 allCardSection.addEventListener("click", function (event) {
 
   const button = event.target.closest("button");
@@ -98,13 +168,24 @@ allCardSection.addEventListener("click", function (event) {
   const id = card.dataset.id;
   const job = jobs.find(j => j.id === id);
 
+  if (!job) return;
+
+  //  Interview Toggle
   if (button.classList.contains("interview-btn")) {
     job.status = job.status === "interview" ? "all" : "interview";
     renderCards();
   }
 
+  // Rejected Toggle
   if (button.classList.contains("rejected-btn")) {
     job.status = job.status === "rejected" ? "all" : "rejected";
+    renderCards();
+  }
+
+  //  Delete
+  if (button.classList.contains("cursor-pointer")) {
+    card.remove();
+    jobs = jobs.filter(j => j.id !== id);
     renderCards();
   }
 
@@ -112,19 +193,5 @@ allCardSection.addEventListener("click", function (event) {
 
 
 
-// add status update
 
-const statusElement = card.querySelector(".not-AppliedBtn");
-
-if (job.status === "interview") {
-  statusElement.innerText = "Interview";
-  statusElement.className = "btn btn-success btn-sm w-[113px] not-AppliedBtn";
-}
-else if (job.status === "rejected") {
-  statusElement.innerText = "Rejected";
-  statusElement.className = "btn btn-error btn-sm w-[113px] not-AppliedBtn";
-}
-else {
-  statusElement.innerText = "Not Applied";
-  statusElement.className = "btn btn-info btn-sm w-[113px] not-AppliedBtn";
-}
+renderCards();
