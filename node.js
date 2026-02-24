@@ -85,3 +85,27 @@ function renderCards() {
 }
 
 renderCards();
+
+// Add Interview
+allCardSection.addEventListener("click", function (event) {
+
+  const button = event.target.closest("button");
+  if (!button) return;
+
+  const card = button.closest(".job-card");
+  if (!card) return;
+
+  const id = card.dataset.id;
+  const job = jobs.find(j => j.id === id);
+
+  if (button.classList.contains("interview-btn")) {
+    job.status = job.status === "interview" ? "all" : "interview";
+    renderCards();
+  }
+
+  if (button.classList.contains("rejected-btn")) {
+    job.status = job.status === "rejected" ? "all" : "rejected";
+    renderCards();
+  }
+
+});
