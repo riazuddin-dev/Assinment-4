@@ -1,37 +1,52 @@
+
 # JavaScript DOM Basic Questions & Answers
 
 ## 1. Difference between getElementById, getElementsByClassName, querySelector, querySelectorAll
 
- 1.getElementById → Sudhu 1 ta element dhore (ID diye).  
+getElementById()  
+→ Selects only one element by ID.
 
-2.getElementsByClassName → Onek gula element dhore (class diye, live collection).  
-3.querySelector → First matching element dhore (CSS selector diye).  
-4.querySelectorAll → Sob matching element dhore (static NodeList).
+getElementsByClassName()  
+→ Selects multiple elements by class name.  
+→ It is a live collection (updates automatically).
 
----
+querySelector()  
+→ Selects the first matching element.  
+→ Uses CSS selector.
 
-## 2. How to create and insert a new element into the DOM?
+querySelectorAll()  
+→ Selects all matching elements.  
+→ It is a static NodeList (does not update automatically).
 
-document.createElement() diye element banai → content add kori → appendChild() diye DOM e add kori.
+## 2. How to Create and Insert a New Element into the DOM
+
+Use document.createElement() to create a new element.  
+Add content to it.  
+Use appendChild() to insert it into the DOM.
 
 Example:
 
-```js
 const div = document.createElement("div");
 div.innerText = "Hello";
 document.body.appendChild(div);
 
+## 3. What is Event Bubbling?
 
-3. What is Event Bubbling?
+Event Bubbling means when an event happens on a child element,
+it moves up to the parent, then parent’s parent, and continues upward.
 
-Event Bubbling mane child e event hole seta parent → tar parent → evabe upor e uthe.
 
-4. What is Event Delegation?
+## 4. What is Event Delegation?
 
-Parent e event listener diye child gula handle kora.
-Eta performance valo kore ar dynamic element e kaj kore.
+Event Delegation means adding an event listener to a parent element
+to handle events for its child elements.
 
-5. Difference between preventDefault() and stopPropagation()
+It improves performance and works for dynamic elements.
 
-preventDefault() → Browser er default kaj bondho kore.
-stopPropagation() → Event bubbling bondho kore.
+## 5. Difference between preventDefault() and stopPropagation()
+
+preventDefault()
+→ Stops the browser’s default action.
+
+stopPropagation()
+→ Stops the event from bubbling to parent elements.
