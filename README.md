@@ -1,52 +1,42 @@
+# 🌐 Assignment 4 Project
 
-# JavaScript DOM Basic Questions & Answers
+<img width="1902" height="823" alt="image" src="https://github.com/user-attachments/assets/a18f2937-8540-4ead-9ed6-962285c2900c" />
 
-## 1. Difference between getElementById, getElementsByClassName, querySelector, querySelectorAll
+---
 
-getElementById()  
-→ Selects only one element by ID.
+## 🚀 Overview
 
-getElementsByClassName()  
-→ Selects multiple elements by class name.  
-→ It is a live collection (updates automatically).
+This project is a responsive web application built using HTML, CSS, and JavaScript. It demonstrates modern UI design, structured layout, and interactive elements to enhance user experience.
 
-querySelector()  
-→ Selects the first matching element.  
-→ Uses CSS selector.
+---
 
-querySelectorAll()  
-→ Selects all matching elements.  
-→ It is a static NodeList (does not update automatically).
+## ✨ Features
 
-## 2. How to Create and Insert a New Element into the DOM
+- 📱 Fully responsive design  
+- 🎨 Clean and modern UI  
+- ⚡ Interactive elements using JavaScript  
+- 🧭 Smooth navigation  
+- 📌 Well-structured layout  
 
-Use document.createElement() to create a new element.  
-Add content to it.  
-Use appendChild() to insert it into the DOM.
+---
 
-Example:
+## 🛠 Tech Stack
 
-const div = document.createElement("div");
-div.innerText = "Hello";
-document.body.appendChild(div);
+- HTML5  
+- CSS3  
+- JavaScript  
 
-## 3. What is Event Bubbling?
+---
 
-Event Bubbling means when an event happens on a child element,
-it moves up to the parent, then parent’s parent, and continues upward.
+## 📦 Dependencies
 
+- No external dependencies (Vanilla JavaScript project)
 
-## 4. What is Event Delegation?
+---
 
-Event Delegation means adding an event listener to a parent element
-to handle events for its child elements.
+## 🖥 Run Locally
 
-It improves performance and works for dynamic elements.
-
-## 5. Difference between preventDefault() and stopPropagation()
-
-preventDefault()
-→ Stops the browser’s default action.
-
-stopPropagation()
-→ Stops the event from bubbling to parent elements.
+```bash
+git clone https://github.com/yourusername/Assinment-4.git
+cd Assinment-4
+open index.html
